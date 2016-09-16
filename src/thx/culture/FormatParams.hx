@@ -1,5 +1,5 @@
 package thx.culture;
-
+ import Lambda;
 /**
  * ...
  * @author Franco Ponticelli
@@ -29,8 +29,16 @@ class FormatParams
 			return [alt];
 		if (null == ps || ps.length == 0)
 		{
+
 			var parts = p.split(":");
-			return [parts[0]].concat(parts.length == 1 ? [] : parts[1].split(",").map(function(s, i) if (0 == i) return s else return cleanQuotes(s)));
+			if (parts.length > 1) {
+				var mapFunc = (function(i, s): String if (0 == i) return s else return cleanQuotes(s));
+				var rest = Lambda.mapi(parts[1].split(","), mapFunc);
+				return [parts[0]].concat(Lambda.array(rest));
+			} else {
+				return [parts[0]];
+			}
+
 		}
 		return ps;
 	}

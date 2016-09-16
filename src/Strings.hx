@@ -107,7 +107,7 @@ C           Concats the elements of the list
 Other things to do. Nested placeholders
 </pre>
 	*/
-	public static function format(pattern : String, values : Array<Dynamic>, nullstring = 'null', ?culture : Culture) {
+	public static function format(pattern : String, values : Array<Dynamic>, nullstring = 'null', ?culture : Culture): String {
 		if (null == values || 0 == values.length)
 			return pattern;
 		return formatf(pattern, nullstring, culture)(values);
@@ -140,14 +140,14 @@ Other things to do. Nested placeholders
 			var left = _reFormat.matchedLeft();
 			buf.push(function(_) return left);
 			var df = Dynamics.formatf(format, params, nullstring, culture);
-			buf.push(callback(function(i : Int, v : Array<Dynamic>) return df(v[i]), pos));
+			buf.push((function(i : Int, v : Array<Dynamic>):String return df(v[i])).bind(pos, _));
 			pattern = _reFormat.matchedRight();
 		}
-		return function(values : Array<Dynamic>)
+		return function(values : Array<Dynamic>) : String
 		{
 			if (null == values)
 				values = [];
-			return buf.map(function(df,_) return df(values)).join("");
+			return buf.map(function(df) return df(values)).join("");
 		}
 	}
 
@@ -287,7 +287,7 @@ Other things to do. Nested placeholders
 
 	public static function ucwords(value : String) : String
 	{
-		return __ucwordsPattern.customReplace(ucfirst(value), __upperMatch);
+		return __ucwordsPattern.map(ucfirst(value), __upperMatch);
 	}
 
 	/**
@@ -300,7 +300,7 @@ Other things to do. Nested placeholders
 #if php
 		return untyped __call__("ucwords", value);
 #else
-		return __ucwordswsPattern.customReplace(ucfirst(value), __upperMatch);
+		return __ucwordswsPattern.map(ucfirst(value), __upperMatch);
 #end
 	}
 
@@ -561,5 +561,5 @@ Other things to do. Nested placeholders
 		}
 	}
 
-	public static function compare(a : String, b : String) return a < b ? -1 : a > b ? 1 : 0
+	public static function compare(a : String, b : String) return a < b ? -1 : a > b ? 1 : 0;
 }

@@ -1,5 +1,6 @@
 import thx.culture.Culture;
 import thx.error.Error;
+import haxe.Constraints;
 
 /**
  * ...
@@ -266,10 +267,10 @@ class Dynamics
 					return untyped a.getTime() == b.getTime();
 
 				// hash, inthash
-				if (Std.is(a, Hash) || Std.is(a, IntHash))
+				if (Std.is(a, IMap))
 				{
-					var ha : Hash<Dynamic> = cast a,
-						hb : Hash<Dynamic> = cast b;
+					var ha : Map<Dynamic, Dynamic> = cast a,
+						hb : Map<Dynamic, Dynamic> = cast b;
 					var ka = Iterators.array(ha.keys()),
 						kb = Iterators.array(hb.keys());
 					if (ka.length != kb.length)

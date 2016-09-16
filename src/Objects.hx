@@ -59,13 +59,13 @@ class Objects
 		return ob;
 	}
 
-	public static function toHash<T>(ob : {}) : Hash<T>
+	public static function toHash<T>(ob : {}) : Map<String, T>
 	{
-		var hash = new Hash();
+		var hash = new Map<String, T>();
 		return copyToHash(ob, hash);
 	}
 
-	public static function copyToHash<T>(ob : {}, hash : Hash<T>) : Hash<T>
+	public static function copyToHash<T>(ob : {}, hash : Map<String, T>) : Map<String, T>
 	{
 		for (field in Reflect.fields(ob))
 			hash.set(field, Reflect.field(ob, field));
@@ -123,7 +123,7 @@ class Objects
 		return dst;
 	}
 
-	public static function clone<T>(src : T) : T
+	public static function clone<T:{}>(src : T) : T
 	{
 		var dst = { };
 		return cast copyTo(src, dst);
