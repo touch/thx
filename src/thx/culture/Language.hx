@@ -5,8 +5,8 @@ package thx.culture;
 */
 class Language extends Info
 {
-	static var languages(getLanguages, null) : Map<String, Language>;
-	static function getLanguages()
+	static var languages(get_languages, null) : Map<String, Language>;
+	static function get_languages()
 	{
 		if (null == languages)
 			languages = new Map<String, Language>();

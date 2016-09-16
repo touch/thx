@@ -5,7 +5,7 @@ import thx.culture.Culture;
 class NlNL extends Culture {
 	function new() {
 		language = thx.languages.Nl.language;
-		name = "nl-NL";
+		name = "nl_NL";
 		english = "Dutch (Netherlands)";
 		native = "Nederlands (Nederland)";
 		date = new thx.culture.core.DateTimeInfo(
@@ -51,6 +51,10 @@ class NlNL extends Culture {
 		isMetric = false;
 		Culture.add(this);
 	}
-	public static var culture(getCulture, null) : Culture; static function getCulture() { if(null == culture) culture = new NlNL(); return culture; }
-	static function __init__() { getCulture(); }
+	public static var culture(get_culture, null) : Culture;
+	static function get_culture() {
+		if(null == culture) culture = new NlNL();
+		return culture;
+	}
+	static function __init__() { get_culture(); }
 }
