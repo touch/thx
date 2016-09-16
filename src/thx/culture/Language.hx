@@ -5,11 +5,11 @@ package thx.culture;
 */
 class Language extends Info
 {
-	static var languages(getLanguages, null) : Hash<Language>;
+	static var languages(getLanguages, null) : Map<String, Language>;
 	static function getLanguages()
 	{
 		if (null == languages)
-			languages = new Hash();
+			languages = new Map<String, Language>();
 		return languages;
 	}
 

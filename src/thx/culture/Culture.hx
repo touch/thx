@@ -35,11 +35,11 @@ class Culture extends Info
 	public var currency(default, null) : NumberInfo;
 	public var percent(default, null) : NumberInfo;
 
-	static var cultures(getCultures, null) : Hash<Culture>;
+	static var cultures(getCultures, null) : Map<String, Culture>;
 	static function getCultures()
 	{
 		if (null == cultures)
-			cultures = new Hash();
+			cultures = new Map<String, Culture>();
 		return cultures;
 	}
 
