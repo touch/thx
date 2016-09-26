@@ -1,7 +1,5 @@
 import thx.culture.Culture;
 import thx.error.Error;
-import haxe.Constraints;
-
 /**
  * ...
  * @author Franco Ponticelli
@@ -267,7 +265,7 @@ class Dynamics
 					return untyped a.getTime() == b.getTime();
 
 				// hash, inthash
-				if (Std.is(a, IMap))
+				if (Std.is(a, Map))
 				{
 					var ha : Map<Dynamic, Dynamic> = cast a,
 						hb : Map<Dynamic, Dynamic> = cast b;
